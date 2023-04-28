@@ -23,6 +23,9 @@ const Navbar = () => {
         <li>
             <Link href="/parent">Parent Login</Link>
         </li>
+        <li>
+            <Link href="/signin">Sign In</Link>
+        </li>
       </ul>
     </nav>
   )
