@@ -1,0 +1,16 @@
+.list li a:hover{
+    border-bottom: 3px solid #7671ff;
+}
+
+.activeLink{
+    border-bottom: 3px solid #7671ff;
+
+}
+
+.list li a{
+    font-style: normal;
+	font-weight: 400;
+	font-size: 1.2rem;
+	line-height: 30px;
+	color: #7694f5;
+}
