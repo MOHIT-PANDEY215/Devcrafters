@@ -6,7 +6,7 @@ const About = () => {
     <section>
       <div>
         <Image 
-        src={`/assets/2649645-removebg-preview.png`}
+        src={`/assets/about.svg`}
         width={100}
         height={100}
         />
