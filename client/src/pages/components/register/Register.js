@@ -1,6 +1,9 @@
 import React,{useState} from 'react'
 import Image from 'next/image'
 import style from '../login/SignIn.module.css'
+import Link from 'next/link'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Router from 'next/router'
 
 const Register = () => {
@@ -12,14 +15,24 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch("/api/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, name, password }),
-    });
-    if (res.status === 200) {
-      Router.push("/signin");
-    }
+
+    setEmail("")
+    setPassword("")
+    setName("")
+    setConfirmPassword("")
+    if(!email||!password||!confirmPassword||!name)
+    return toast.error('Add complete data')
+    toast.success('Registered successfully')
+
+
+    // const res = await fetch("/api/register", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({ email, name, password }),
+    // });
+    // if (res.status === 200) {
+    //   Router.push("/signin");
+    // }
   };
 
   return (
@@ -47,7 +60,7 @@ const Register = () => {
                  name='name'
                  value={name}
                  onChange={(e) => setName(e.target.value)}
-                 class={`${style.formControl}`} placeholder="Enter your Name" required
+                 class={`${style.formControl}`} placeholder="Enter your Name" 
                  />
 
             </div>
@@ -59,7 +72,7 @@ const Register = () => {
                 name='email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                class={`${style.formControl}`} placeholder="Enter your User ID" required
+                class={`${style.formControl}`} placeholder="Enter your User ID" 
                 />
 
             </div>
@@ -91,7 +104,9 @@ const Register = () => {
                     Sign Up
                 </button>
             </div>
+            <h1 className="text-[#bde0ff] text-lg mt-4 pl-4">Already Registered? <span className="text-[#fdd6a3] underline hover:text-[#bde0ff]"><Link href="/signin">Login here</Link></span></h1>
         </form>
+        <ToastContainer/>
         </div>
   )
 }

@@ -2,6 +2,8 @@ import React,{useState} from 'react'
 import Image from 'next/image'
 import style from './SignIn.module.css'
 import Link from 'next/link'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Router from 'next/router'
 
 const SignIn = () => {
@@ -9,18 +11,24 @@ const SignIn = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
   
-    const handleSubmit = async (e) => {
+    const handleSubmit =  (e) => {
       e.preventDefault();
-      const res = await fetch("/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-      if (res.status === 200) {
-        Router.push("/");
-      } else if (res.status === 401) {
-        Router.push(`/register?email=${email}`);
-      }
+      setEmail("")
+      setPassword("")
+      console.log('signin console')
+      if(!email||!password)
+      return toast.error('Add complete data')
+      toast.success('Logged in')
+      // const res = await fetch("/api/login", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({ email, password }),
+      // });
+      // if (res.status === 200) {
+      //   Router.push("/");
+      // } else if (res.status === 401) {
+      //   Router.push(`/register?email=${email}`);
+      // }
     };
 
   return (
@@ -49,7 +57,9 @@ const SignIn = () => {
                 type="email" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                class={`${style.formControl}`} placeholder="Enter your User ID" required
+                class={`${style.formControl}`} 
+                placeholder="Enter your User ID" 
+                // required
                 />
             </div>
 
@@ -61,7 +71,9 @@ const SignIn = () => {
                 type="password" 
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                class={`${style.formControl}`} placeholder="Enter the password" 
+                class={`${style.formControl}`} 
+                placeholder="Enter the password" 
+                // required
                 />
             </div>
 
@@ -70,6 +82,7 @@ const SignIn = () => {
             </div>
         <h1 className="text-[#bde0ff] text-lg mt-4 pl-4">Not Registered yet? <span className="text-[#fdd6a3] underline hover:text-[#bde0ff]"><Link href="/register">Register Now</Link></span></h1>
         </form>
+        <ToastContainer/>
         </div>
   )
 }
