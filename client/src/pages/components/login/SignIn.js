@@ -1,34 +1,37 @@
 import React from 'react'
 import Image from 'next/image'
+import style from './SignIn.module.css'
 
 const SignIn = () => {
   return (
-    <div class="container">
-        <header class="header">
-            <h1 id="title" class="text-center">LOGIN</h1>
+    <div class="container w-full mx-auto mt-12 md:max-w-[574px] ">
+
+        <header class="header py-0 px-3 mb-7 flex items-center justify-center">
+            <h1 id="title" class="text-center bg-[#4e4e9bcc] text-white w-2/5 rounded-3xl font-normal text-md">LOGIN</h1>
         </header>
-        <form action="{{ url_for('login')}}" method="post" id="login-form">
-            <div class="text-center">
+
+        <form action="{{ url_for('login')}}" method="post" className="p-10 rounded-2xl bg-[#4e4e9bcc]" id="login-form">
+            <div class="flex items-center justify-center">
             <Image
-            className="w-1/2 h-1/2"
-            src={`/assets/logo.svg`}
+            className="self-center w-1/8 h-1/8 rounded-full"
+            src={`/assets/logo.png`}
             alt="NIEPMD Logo"
-            width={10}
+            width={72}
             height={72}
             />
             </div>
             <div class="form-group">
-                <label id="email-label" for="email">User ID</label>
-                <input id="email" type="text" name="email" class="form-control" placeholder="Enter your User ID" required></input>
+                <label id="email-label" for="email" className="text-[#100060]">User ID</label>
+                <input id="email" type="text" name="email" class={`${style.formControl}`} placeholder="Enter your User ID" required></input>
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
+                <label className="text-[#100060]" for="password">Password</label>
                 {/* <!-- <a href="#" style="float: right;font: size 12px;">Forgot Password?</a> --> */}
-                <input type="password" class="form-control" placeholder="Enter the password" id="password" name="password"/>
+                <input type="password" class={`${style.formControl}`} placeholder="Enter the password" id="password" name="password"/>
             </div>
 
             <div class="form-group">
-                <button type="submit" id="submit" class="submit-button">Login</button>
+                <button type="submit" id="submit" class="submit-button w-full cursor-pointer p-3 bg-[#37af65] rounded-[25px] mt-6 text-white">Login</button>
             </div>
         </form>
         </div>

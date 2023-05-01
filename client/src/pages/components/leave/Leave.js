@@ -1,14 +1,18 @@
 import React from 'react'
+import style from './Leave.module.css'
 
 const Leave = () => {
   return (
     <div className="h-screen flex justify-center items-center">
-      <form>
-        <div className="flex flex-col justify-center w-[550px] h-[620px] rounded-[7px] bg-white">
-          <h1 className="text-xl font-medium text-[#6b6a6c] m-0">Leave Application</h1>
-          <hr />
+      <form className='mt-[-50px]'>
 
-          <div class="form-item">
+        <div className={`flex flex-col justify-center w-[550px] h-[620px] rounded-[7px] py-0 px-[50px] m-2 ${style.container}`}>
+
+          <h1 className="text-xl font-medium text-[#6b6a6c] mt-4">Leave Application</h1>
+
+          <hr className="border-1 border-solid border-[#f1f1f1] mb-[25px]" />
+
+          <div class={`${style.formItem}`}>
             <label for="email" id="name">Name</label>
             <input
               type="text"
@@ -19,7 +23,7 @@ const Leave = () => {
             />
           </div>
 
-          <div class="form-item">
+          <div class={`${style.formItem}`}>
             <label for="identity" id="identity">Student Id</label>
             <input
               type="text"
@@ -29,7 +33,7 @@ const Leave = () => {
               required
             />
           </div>
-          <div class="form-item">
+          <div class={`${style.formItem}`}>
             <label for="date" id="date">Start Date</label>
             <br/>
             <input
@@ -41,7 +45,7 @@ const Leave = () => {
             />
         </div>
             
-            <div class="form-item">
+            <div class={`${style.formItem}`}>
             <label for="date" id="date">End Date</label>
             <br/>
             <input
@@ -54,7 +58,7 @@ const Leave = () => {
           </div>
           
 
-            <div class="form-item">
+            <div class={`${style.formItem}`}>
                 <label for="reason" id="reason">Reason</label>
                 <br/>
                 <textarea
@@ -67,7 +71,7 @@ const Leave = () => {
                 ></textarea>
                 </div>
 
-          <div class="form-item">
+          <div class={`${style.formItem}`}>
             <label for="psw" id="pnumber">Parent's Phone Number</label>
             <input
               type="text"
@@ -81,7 +85,7 @@ const Leave = () => {
         
             <div class="button">
                
-                <a  href="{{url_for('leaves')}}" class="registerbtn">Submit</a>
+                <button class="registerbtn bg-[#5552ff] text-white py-4 px-5 my-3 mx-0 border-0 cursor-pointer w-full opacity-90">Submit</button>
             </div>
             
         </div>
