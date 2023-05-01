@@ -27,4 +27,12 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: #FFFFFF;
+  /* background-image: linear-gradient(
+    to right top,
+    #5552ff,
+    #7671ff,
+    #938fff,
+    #aeacff,
+    #cac9ff
+  ); */
 }

@@ -2,10 +2,10 @@ import React from 'react'
 
 const Leave = () => {
   return (
-    <div>
+    <div className="h-screen flex justify-center items-center">
       <form>
-        <div>
-          <h1>Leave Application</h1>
+        <div className="flex flex-col justify-center w-[550px] h-[620px] rounded-[7px] bg-white">
+          <h1 className="text-xl font-medium text-[#6b6a6c] m-0">Leave Application</h1>
           <hr />
 
           <div class="form-item">
