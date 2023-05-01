@@ -8,6 +8,7 @@ const Register = () => {
     const [email, setEmail] = useState(Router.query.email || "");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,6 +44,7 @@ const Register = () => {
 
                 <input
                  type="text"
+                 name='name'
                  value={name}
                  onChange={(e) => setName(e.target.value)}
                  class={`${style.formControl}`} placeholder="Enter your Name" required
@@ -54,6 +56,7 @@ const Register = () => {
 
                 <input 
                 type="email" 
+                name='email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 class={`${style.formControl}`} placeholder="Enter your User ID" required
@@ -67,15 +70,21 @@ const Register = () => {
                 {/* <!-- <a href="#" style="float: right;font: size 12px;">Forgot Password?</a> --> */}
                 <input type="password" 
                 value={password}
+                name='password'
                 onChange={(e) => setPassword(e.target.value)}
                 class={`${style.formControl}`} placeholder="Enter a strong password" 
                 />
             </div>
-            {/* <div class="form-group">
-                <label className="text-[#100060] text-xl" for="password">Confirm Password</label> */}
+            <div class="form-group">
+                <label className="text-[#100060] text-xl" for="password">Confirm Password</label>
                 {/* <!-- <a href="#" style="float: right;font: size 12px;">Forgot Password?</a> --> */}
-                {/* <input type="password" class={`${style.formControl}`} placeholder="Enter password again" id="password" name="password"/>
-            </div> */}
+                <input type="password"
+                 value={confirmPassword}
+                 name='confirmPassword'
+                 onChange={(e)=>setConfirmPassword(e.target.value)}
+                 class={`${style.formControl}`} placeholder="Enter password again" 
+                />
+            </div>
 
             <div class="form-group">
                 <button type="submit" class="submit-button w-full cursor-pointer p-3 bg-[#37af65] hover:bg-[#37af25] rounded-[25px] mt-6 text-white text-xl">
