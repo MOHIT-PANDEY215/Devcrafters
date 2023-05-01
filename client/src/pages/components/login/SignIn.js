@@ -10,7 +10,7 @@ const SignIn = () => {
             <h1 id="title" class="text-center bg-[#4e4e9bcc] text-white w-2/5 rounded-3xl font-normal text-md">LOGIN</h1>
         </header>
 
-        <form action="{{ url_for('login')}}" method="post" className="p-10 rounded-2xl bg-[#4e4e9bcc]" id="login-form">
+        <form className="p-10 rounded-2xl bg-[#4e4e9bcc]" id="login-form">
             <div class="flex items-center justify-center">
             <Image
             className="self-center w-1/8 h-1/8 rounded-full"
