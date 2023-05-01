@@ -7,9 +7,9 @@ const Navbar = () => {
   const router = useRouter();
   const path = router.pathname;
   return (
-    <nav className="flex pr-20 justify-between items-center w-full h-[75px] ml-8" id="navbar">
+    <nav className={`flex pr-20 justify-between items-center w-screen h-[75px] ${style.navbar}`}>
       
-        <div className="text-[#76B8F5] text-2xl font-extrabold ml-10">Devcrafters</div>
+        <div className="text-[#76B8F5] text-2xl font-extrabold ml-12">Devcrafters</div>
 
       <ul className={`${style.list} flex justify-center items-center gap-4`}>
         <li>
