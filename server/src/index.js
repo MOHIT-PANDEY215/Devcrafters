@@ -6,6 +6,7 @@ const app=express();
 const cors=require('cors')
 
 const {register ,login}=require('./controllers/authController')
+require('dotenv').config()
 
 app.use(cors());
 app.use(express.json());
@@ -28,4 +29,5 @@ app.post('/api/login',login)
 
 app.listen(port,()=>{
     console.log(`Server listening on port http://localhost:${port}`)
+    console.log(process.env.MONGO_URL)
 })
