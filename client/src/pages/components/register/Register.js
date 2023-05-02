@@ -4,11 +4,11 @@ import style from '../login/SignIn.module.css'
 import Link from 'next/link'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Router from 'next/router'
+import router from 'next/router'
 
 const Register = () => {
 
-    const [email, setEmail] = useState(Router.query.email || "");
+    const [email, setEmail] = useState( "");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -20,19 +20,28 @@ const Register = () => {
     setPassword("")
     setName("")
     setConfirmPassword("")
-    if(!email||!password||!confirmPassword||!name)
+    if(!email || !password || !confirmPassword || !name)
     return toast.error('Add complete data')
-    toast.success('Registered successfully')
-
-
-    // const res = await fetch("/api/register", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({ email, name, password }),
-    // });
-    // if (res.status === 200) {
-    //   Router.push("/signin");
-    // }
+    
+    
+    const res = await fetch("http://localhost:5000/api/register", {
+      method: "POST",
+      headers: { 
+        "Content-Type": "application/json"
+       },
+       body: JSON.stringify({ 
+         email, 
+        name, 
+        password,
+      confirmPassword }),
+    });
+    if (res.status === 201) {
+      toast.success('Registered successfully')
+      router.push("/signin");
+    }
+    if(res.status===400){
+      return toast.error('res.message');
+    }
   };
 
   return (

@@ -4,31 +4,33 @@ import style from './SignIn.module.css'
 import Link from 'next/link'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Router from 'next/router'
+import router from 'next/router'
 
 const SignIn = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
   
-    const handleSubmit =  (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault();
       setEmail("")
       setPassword("")
       console.log('signin console')
       if(!email||!password)
       return toast.error('Add complete data')
-      toast.success('Logged in')
-      // const res = await fetch("/api/login", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify({ email, password }),
-      // });
-      // if (res.status === 200) {
-      //   Router.push("/");
-      // } else if (res.status === 401) {
-      //   Router.push(`/register?email=${email}`);
-      // }
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      if (res.status === 201) {
+        router.push("/");
+        toast.success('Logged in')
+      } else  {
+        return toast.error('Invalid details')
+        // router.push(`/register`);
+        // router.push(`/register?email=${email}`);
+      }
     };
 
   return (

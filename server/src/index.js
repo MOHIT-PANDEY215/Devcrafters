@@ -3,7 +3,11 @@ const express =require('express')
 require('./db/conn')
 
 const app=express();
+const cors=require('cors')
 
+const {register ,login}=require('./controllers/authController')
+
+app.use(cors());
 app.use(express.json());
 
 const port =process.env.PORT ||5000
@@ -18,6 +22,9 @@ app.get('/register',(req,res)=>{
         {message: "register there"}
     )
 })
+
+app.post('/api/register',register)
+app.post('/api/login',login)
 
 app.listen(port,()=>{
     console.log(`Server listening on port http://localhost:${port}`)
