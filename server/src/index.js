@@ -1,12 +1,13 @@
 const express =require('express')
 
 require('./db/conn')
+require('dotenv').config()
 
 const app=express();
 const cors=require('cors')
 
+const studentsRouter = require('./routes/student');
 const {register ,login}=require('./controllers/authController')
-require('dotenv').config()
 
 app.use(cors());
 app.use(express.json());
@@ -24,10 +25,14 @@ app.get('/register',(req,res)=>{
     )
 })
 
+
+// Mount the students router
+app.use('/api/students', studentsRouter);
+
+
 app.post('/api/register',register)
 app.post('/api/login',login)
 
 app.listen(port,()=>{
     console.log(`Server listening on port http://localhost:${port}`)
-    console.log(process.env.MONGO_URL)
 })

@@ -12,7 +12,6 @@ function Card({ name, title, company, socials, imageSrc, lazyImageSrc }) {
           className="z-10 rounded-lg object-cover object-top"
           height="100%"
           width="100%"
-          layout="responsive"
           src={imageSrc}
           alt={name}
           quality={100}
