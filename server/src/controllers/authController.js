@@ -1,12 +1,13 @@
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const {createSecretToken} = require("../util/SecretToken")
 const User = require('../models/user');
 
 const register = async (req, res, next) => {
   try {
     const { email, password, confirmPassword, name } = req.body;
 
-     // Check if all fields are present
+    // Check if all fields are present
+   
   if (!name || !email || !password || !confirmPassword) {
     return res.status(400).json({ 
       message: 'All fields are required.'
@@ -23,13 +24,14 @@ const register = async (req, res, next) => {
     if (existingUser) {
       return res.status(409).json({ message: 'User already exists' });
     }
-
-    // hash password and create user
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ email, password: hashedPassword, name });
-    await user.save();
-
+    const user= await User.create({email,password,name})
+    const token= createSecretToken(user._id)
+    res.cookie("token",token,{
+      withCredentials:true,
+      httpOnly:false,
+    })
     res.status(201).json({ message: 'User created successfully' });
+    next()
   } catch (err) {
     next(err);
   }

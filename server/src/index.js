@@ -1,38 +1,29 @@
 const express =require('express')
-
+const cors=require('cors')
+const authRoute=require("./routes/AuthRoute")
 require('./db/conn')
 require('dotenv').config()
-
+const cookieParser = require("cookie-parser")
 const app=express();
-const cors=require('cors')
-
-const studentsRouter = require('./routes/student');
-const {register ,login}=require('./controllers/authController')
-
-app.use(cors());
-app.use(express.json());
 
 const port =process.env.PORT ||5000
 
-app.get('/',(req,res)=>{
-    res.json(
-        {message: "hello there"}
-    )
-})
-app.get('/register',(req,res)=>{
-    res.json(
-        {message: "register there"}
-    )
-})
-
-
-// Mount the students router
-app.use('/api/students', studentsRouter);
-
-
-app.post('/api/register',register)
-app.post('/api/login',login)
 
 app.listen(port,()=>{
     console.log(`Server listening on port http://localhost:${port}`)
+})
+
+app.use(cors({
+    origin:["http://localhost:3000"],
+    methods:["GET","POST","PUT","DELETE"],
+    credentials:true,
+}));
+
+app.use(cookieParser())
+app.use(express.json());
+
+app.use("/",authRoute)
+app.get("/",(req,res)=>{
+    console.log('f')
+    res.json({msg:"hello there"})
 })
