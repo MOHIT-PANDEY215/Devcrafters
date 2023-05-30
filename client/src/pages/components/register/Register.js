@@ -24,7 +24,7 @@ const Register = () => {
     return toast.error('Add complete data')
     
     
-    const res = await fetch("http://localhost:5000/api/register", {
+    const res = await fetch("http://localhost:5000/register", {
       method: "POST",
       headers: { 
         "Content-Type": "application/json"
@@ -35,6 +35,7 @@ const Register = () => {
         password,
       confirmPassword }),
     });
+
     if (res.status === 201) {
       toast.success('Registered successfully')
       router.push("/signin");

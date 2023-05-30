@@ -54,8 +54,12 @@ const login = async (req, res, next) => {
     }
 
     // generate jwt token and send to client
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
-    res.json({ token });
+    const token= createSecretToken(user._id)
+    res.cookie("token",token,{
+      withCredentials:true,
+      httpOnly:false,
+    })
+    res.status(201).json({message:"User created successfully" });
   } catch (err) {
     next(err);
   }

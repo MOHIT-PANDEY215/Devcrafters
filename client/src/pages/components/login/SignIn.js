@@ -13,12 +13,12 @@ const SignIn = () => {
   
     const handleSubmit = async (e) => {
       e.preventDefault();
-      setEmail("")
-      setPassword("")
       console.log('signin console')
       if(!email||!password)
       return toast.error('Add complete data')
-      const res = await fetch("/api/login", {
+      setEmail("")
+      setPassword("")
+      const res = await fetch("http://localhost:5000/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -27,13 +27,14 @@ const SignIn = () => {
         router.push("/");
         toast.success('Logged in')
       } else  {
+        console.log([email,password])
         return toast.error('Invalid details')
         // router.push(`/register`);
         // router.push(`/register?email=${email}`);
       }
     };
-
-  return (
+    
+    return (
     <div class="container w-full mx-auto mt-12 md:max-w-[574px] ">
 
         <header class="header py-0 px-3 mb-7 flex items-center justify-center">
