@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema({
     trim: true,
     minlength: 6,
   },
+  role: {
+    type: String,
+    required: true,
+  },
 });
 
 userSchema.pre("save", async function(next){
