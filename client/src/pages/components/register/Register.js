@@ -8,18 +8,27 @@ import router from "next/router";
 
 const Register = () => {
   const [email, setEmail] = useState("");
+  const [role,setRole] =useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const payload = {
+      name,
+      email,
+      password,
+      confirmPassword,
+      role,
+    };
 
     setEmail("");
     setPassword("");
     setName("");
     setConfirmPassword("");
-    if (!email || !password || !confirmPassword || !name)
+    setRole("")
+    if (!email || !password || !confirmPassword || !name || !role)
       return toast.error("Add complete data");
 
     const res = await fetch("http://localhost:5000/register", {
@@ -27,12 +36,7 @@ const Register = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        email,
-        name,
-        password,
-        confirmPassword,
-      }),
+      body: JSON.stringify(payload),
     });
 
     if (res.status === 201) {
@@ -83,7 +87,12 @@ const Register = () => {
           {/* <label id="role-label" htmlFor="role" className="text-[#100060] text-xl mt-2">
             Role
           </label> */}
-          <select name="role" required className="my-4 mx-2 text-[#100060] text-lg">
+          <select 
+            value={role} 
+            onChange={(e) => setRole(e.target.value.toLowerCase())} name="role" 
+            required 
+            className="my-4 mx-2 text-[#100060] text-lg"
+          >
             <option value="">Role</option>
             <option value="admin">Admin</option>
             <option value="student">Student</option>

@@ -4,11 +4,11 @@ const User = require('../models/user');
 
 const register = async (req, res, next) => {
   try {
-    const { email, password, confirmPassword, name } = req.body;
+    const { email, password, confirmPassword, name,role } = req.body;
 
     // Check if all fields are present
    
-  if (!name || !email || !password || !confirmPassword) {
+  if (!name || !email || !password || !confirmPassword||!role) {
     return res.status(400).json({ 
       message: 'All fields are required.'
      });
@@ -19,12 +19,16 @@ const register = async (req, res, next) => {
     return res.status(400).json({ message: 'Passwords do not match.' });
   }
 
+  if (!['admin', 'student', 'teacher'].includes(role)) {
+    return res.status(400).json({ error: 'Invalid role' });
+  }
+
     // check if user with email already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(409).json({ message: 'User already exists' });
     }
-    const user= await User.create({email,password,name})
+    const user= await User.create({email,password,name,role})
     const token= createSecretToken(user._id)
     res.cookie("token",token,{
       withCredentials:true,

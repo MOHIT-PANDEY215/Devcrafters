@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { FaArrowRight } from "react-icons/fa";
+import Link from 'next/link';
 
 const Main = () => {
   return (
@@ -14,10 +15,17 @@ const Main = () => {
                 school security system.
             </p>
             {/* <!-- <image src="{{url_for('static',filename='img/shape3.svg')}}" alt="img" class="vector3" /> --> */}
-
+            <div className="flex gap-1">
             <button className="border-0 bg-[#5676e2] hover:bg-[#76B8F5] text-[#fff] hover:text-[#1a1f20] flex items-center gap-3 rounded-[5px] transition-all ease-in-out   duration-300 pt-3 pb-3 pr-10 pl-10">
             Let's Go <FaArrowRight/>
             </button>
+            <Link href="/videoChat">
+            <button className="border-0 bg-[#5676e2] hover:bg-[#76B8F5] text-[#fff] hover:text-[#1a1f20] flex items-center gap-3 rounded-[5px] transition-all ease-in-out   duration-300 pt-3 pb-3 pr-10 pl-10">
+            Class <FaArrowRight/>
+            </button>
+            </Link>
+            </div>
+            
             {/* <!-- <submit type="button" class="btn" a href="{{url_for('register')}}">
                 Let's Go <i class="fa-solid fa-arrow-right-long"></i>
             </button> --> */}
