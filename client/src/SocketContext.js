@@ -14,19 +14,25 @@ const ContextProvider =({children})=>{
     const [callEnded,setCallEnded]=useState(false)
     const [name,setName] =useState('')
 
-    const myVideo=useRef()
+    const myVideo=useRef({})
     const userVideo=useRef()
     const connectionRef=useRef()
 
     useEffect(()=>{
-        navigator.mediaDevices.getUserMedia({video:true,audio:true})
-        .then((currentStream)=>{
-            setStream(currentStream)
-            myVideo.current.srcObject=currentStream
-        })
-        socket.on('me',(id)=>setRequestMeta(id))
+        const getUsermedia = async ()=>{
+            try{
+                const currentStream= await navigator.mediaDevices.getUserMedia({video:true,audio:true})
+                setStream(currentStream)
+                myVideo.current.srcObject=currentStream
+            } catch (e) {
+                console.log(e);
+            }
+        }
+        getUsermedia();
+        
+        socket.on('me',(id)=>setMe(id))
         socket.on('calluser',({from, name:callerName, signal})=>{
-            setCall({isRecievedCall:true. from,name:callerName,signal})
+            setCall({isReceivedCall:true, from,name:callerName,signal})
         })
     },[])
 
@@ -46,6 +52,7 @@ const ContextProvider =({children})=>{
     }
     
     const callUser =(id)=>{
+        console.log(id)
         const peer= new Peer({ initiator:true,trickle:false,stream})
         
         peer.on('signal',(data)=>{
@@ -68,6 +75,7 @@ const ContextProvider =({children})=>{
         connectionRef.current.destroy()
         window.location.reload()
     }
+    
     return(
         <SocketContext.Provider value={{
             call,

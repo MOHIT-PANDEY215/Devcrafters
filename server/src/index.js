@@ -18,7 +18,7 @@ const io =require("socket.io")(server,{
 const port =process.env.PORT ||5000
 
 
-app.listen(port,()=>{
+server.listen(port,()=>{
     console.log(`Server listening on port http://localhost:${port}`)
 })
 
