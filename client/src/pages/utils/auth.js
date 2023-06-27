@@ -1,39 +1,39 @@
-import axios from "axios";
+// import { signout } from './api-auth.js'
 
-const API_URL = "http://localhost:5000/api";
+const auth = {
+  isAuthenticated() {
+    if (typeof window == "undefined")
+      return false
 
-export const register = async (userData) => {
-  try {
-    const response = await axios.post(`${API_URL}/register`, userData);
-    return response.data;
-  } catch (error) {
-    throw new Error(error.response.data.message);
+    if (sessionStorage.getItem('jwt'))
+      return JSON.parse(sessionStorage.getItem('jwt'))
+    else
+      return false
+  },
+  authenticate(jwt, cb) {
+    if (typeof window !== "undefined")
+      sessionStorage.setItem('jwt', JSON.stringify(jwt))
+    cb()
+  },
+  clearJWT(cb) {
+    if (typeof window !== "undefined")
+      sessionStorage.removeItem('jwt')
+    cb()
+    //optional
+    signout().then((data) => {
+      document.cookie = "t=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+    })
+  },
+  updateUser(user, cb) {
+    if(typeof window !== "undefined"){
+      if(sessionStorage.getItem('jwt')){
+         let auth = JSON.parse(sessionStorage.getItem('jwt'))
+         auth.user = user
+         sessionStorage.setItem('jwt', JSON.stringify(auth))
+         cb()
+       }
+    }
   }
-};
+}
 
-export const login = async (email, password) => {
-  try {
-    const response = await axios.post(`${API_URL}/login`, { email, password });
-    return response.data;
-  } catch (error) {
-    throw new Error(error.response.data.message);
-  }
-};
-
-export const logout = async () => {
-  try {
-    const response = await axios.post(`${API_URL}/logout`);
-    return response.data;
-  } catch (error) {
-    throw new Error(error.response.data.message);
-  }
-};
-
-export const getUser = async () => {
-  try {
-    const response = await axios.get(`${API_URL}/user`);
-    return response.data;
-  } catch (error) {
-    throw new Error(error.response.data.message);
-  }
-};
+export default auth

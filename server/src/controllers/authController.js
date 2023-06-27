@@ -59,14 +59,28 @@ const login = async (req, res, next) => {
 
     // generate jwt token and send to client
     const token= createSecretToken(user._id)
+
     res.cookie("token",token,{
       withCredentials:true,
       httpOnly:false,
     })
-    res.status(201).json({message:"User logged successfully" });
+    res.status(201).json({token,
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role
+      }});
   } catch (err) {
     next(err);
   }
 };
 
-module.exports = { register, login };
+const logout = (req, res) => {
+  res.clearCookie("t")
+  return res.status('200').json({
+    message: "signed out"
+  })
+}
+
+module.exports = { register, login, logout };
