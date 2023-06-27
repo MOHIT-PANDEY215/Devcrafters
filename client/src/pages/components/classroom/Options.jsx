@@ -6,19 +6,19 @@ const Options = ({children}) => {
   const {me, callAccepted, name, setName, callEnded, leaveCall, callUser} = useContext(SocketContext)
   const [idToCall, setIdToCall] = useState('')
   return (
-    <div>
+    <div className='mx-3'>
       <form onSubmit={(e)=>{e.preventDefault()}} action="" noValidate autoComplete='off' className='grid gap-2 grid-cols-2'>
         <div className='flex flex-col text-center border-slate-700 border-2'>
-        <label htmlFor="">Account Info</label>
-        <input type="text" value={name} onChange={(e)=>setName(e.target.value)} />
+        <label>Account Info</label>
+        <input className='border-2 border-gray-950' type="text" placeholder='Enter Name' value={name} onChange={(e)=>setName(e.target.value)} />
         {console.log(me)}
       <CopyToClipboard text={me}>
-        <button>copy</button>
+        <button>Copy</button>
       </CopyToClipboard>
         </div>
         <div className='flex flex-col text-center border-slate-700 border-2'>
         <label htmlFor="">Make a call</label>
-        <input type="text" value={idToCall} onChange={(e)=>setIdToCall(e.target.value)} />
+        <input className='border-2 border-gray-950' type="text" placeholder='Enter copied id' value={idToCall} onChange={(e)=>setIdToCall(e.target.value)} />
         {
           callAccepted && !callEnded ? (
             <button  onClick={leaveCall}>

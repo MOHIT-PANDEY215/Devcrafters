@@ -1,15 +1,17 @@
-import React,{useState} from 'react'
+import React,{useState, useContext} from 'react'
 import Image from 'next/image'
 import style from './SignIn.module.css'
 import Link from 'next/link'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import router from 'next/router'
+import { AuthContext } from '@/pages/context/AuthContext';
 
 const SignIn = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { loggedIn, setLoggedIn, setUser } = useContext(AuthContext);
   
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -24,7 +26,10 @@ const SignIn = () => {
         body: JSON.stringify({ email, password }),
       });
       if (res.status === 201) {
-        router.push("/");
+        const userData = await res.json();
+        setLoggedIn(true);
+        setUser(userData);
+        router.push("/dashboard");
         toast.success('Logged in')
       } else  {
         console.log([email,password])

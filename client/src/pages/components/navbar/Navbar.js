@@ -1,10 +1,13 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router';
 import style from './Navbar.module.css'
+import { AuthContext } from '@/pages/context/AuthContext';
 
 const Navbar = () => {
   const router = useRouter();
+  const { loggedIn, setLoggedIn } = useContext(AuthContext);
+  {console.log(loggedIn)}
   const path = router.pathname;
   return (
     <nav className={`flex pr-20 justify-between items-center w-screen h-[75px] ${style.navbar}`}>
@@ -24,12 +27,17 @@ const Navbar = () => {
         <li>
             <Link  className={path === '/leave' ? `${style.activeLink}` : ''} href="/leave">Leave Note</Link>
         </li>
-        <li>
-            <Link  className={path === '/parent' ? `${style.activeLink}` : ''} href="/parent">Parent Login</Link>
-        </li>
-        <li>
-            <Link  className={path === '/signin' ? `${style.activeLink}` : ''} href="/signin">Sign In</Link>
-        </li>
+        
+        {!loggedIn && (
+          <li>
+          <Link  className={path === '/parent' ? `${style.activeLink}` : ''} href="/parent">Parent Login</Link>
+      </li>
+        )}
+        {!loggedIn && (
+          <li>
+            <Link className={path === '/signin' ? `${style.activeLink}` : ''} href="/signin">Sign In</Link>
+          </li>
+        )}
       </ul>
     </nav>
   )

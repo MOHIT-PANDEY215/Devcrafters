@@ -63,7 +63,7 @@ const login = async (req, res, next) => {
       withCredentials:true,
       httpOnly:false,
     })
-    res.status(201).json({message:"User created successfully" });
+    res.status(201).json({message:"User logged successfully" });
   } catch (err) {
     next(err);
   }

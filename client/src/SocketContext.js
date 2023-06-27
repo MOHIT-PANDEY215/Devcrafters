@@ -45,7 +45,9 @@ const ContextProvider =({children})=>{
             socket.emit('answercall',{signal:data,to:call.from})
         })
         peer.on('stream',(currentStream)=>{
-            userVideo.current.srcObject=currentStream
+            if (userVideo.current) {
+                userVideo.current.srcObject = currentStream; 
+              }
         })
         peer.signal(call.signal)
         connectionRef.current =peer
@@ -59,7 +61,9 @@ const ContextProvider =({children})=>{
             socket.emit('calluser',{userToCall: id,signalData:data,from:me,name})
         })
         peer.on('stream',(currentStream)=>{
-            userVideo.current.srcObject=currentStream
+            if (userVideo.current) {
+                userVideo.current.srcObject = currentStream; 
+              }
         })
         
         socket.on('callaccepted',(signal)=>{

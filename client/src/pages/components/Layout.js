@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 const Layout = ({ children }) => (
   <>
-    <Navbar />
+    <Navbar/>
    <main className={`min-h-screen ${inter.className}`}>{children}</main>
   </>
 );
