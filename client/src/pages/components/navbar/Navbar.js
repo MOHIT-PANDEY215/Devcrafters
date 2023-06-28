@@ -33,9 +33,12 @@ const Navbar = () => {
         <li>
             <Link  className={path === '/contact' ? `${style.activeLink}` : ''} href="/contact">Contact Us</Link>
         </li>
+        {
+          loggedIn &&
         <li>
             <Link  className={path === '/leave' ? `${style.activeLink}` : ''} href="/leave">Leave Note</Link>
         </li>
+        }
         
         {/* {!loggedIn && (
           <li>

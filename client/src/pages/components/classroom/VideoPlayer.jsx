@@ -1,4 +1,4 @@
-import { SocketContext } from "@/SocketContext";
+import { SocketContext } from "@/pages/context/SocketContext";
 import React, { useContext } from "react";
 
 const VideoPlayer = () => {
