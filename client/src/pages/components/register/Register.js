@@ -49,8 +49,8 @@ const Register = () => {
   };
 
   return (
-    <div className="container w-full mx-auto mt-12 md:max-w-[574px] ">
-      <header className="header py-0 px-3 mb-7 flex items-center justify-center">
+    <div className="w-full mx-auto mt-12 md:max-w-[574px] ">
+      <header className="py-0 px-3 mb-7 flex items-center justify-center">
         <h1
           id="title"
           className="text-center bg-[#4e4e9bcc] text-white w-2/5 rounded-3xl font-normal text-xl"

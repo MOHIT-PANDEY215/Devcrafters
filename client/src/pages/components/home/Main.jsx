@@ -18,9 +18,11 @@ const Main = () => {
             </p>
             {/* <!-- <image src="{{url_for('static',filename='img/shape3.svg')}}" alt="img" className="vector3" /> --> */}
             <div className="flex gap-1">
+                <Link href='/signin'>
             <button className="border-0 bg-[#5676e2] hover:bg-[#76B8F5] text-[#fff] hover:text-[#1a1f20] flex items-center gap-3 rounded-[5px] transition-all ease-in-out   duration-300 pt-3 pb-3 pr-10 pl-10">
             Let's Go <FaArrowRight/>
             </button>
+                </Link>
             </div>
             
             {/* <!-- <submit type="button" className="btn" a href="{{url_for('register')}}">
