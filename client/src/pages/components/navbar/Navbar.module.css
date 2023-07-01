@@ -12,7 +12,7 @@ box-shadow: 0px 3px 11px 3px rgba(156,153,219,1);
 
 }
 
-.list li a{
+.list li {
     font-style: normal;
 	font-weight: 400;
 	font-size: 1.2rem;

@@ -29,6 +29,7 @@ const SignIn = () => {
         const userData = await res.json();
         setLoggedIn(true);
         setUser(userData);
+        localStorage.setItem('loggedIn', 'true');
         router.push("/dashboard");
         toast.success('Logged in')
       } else  {
