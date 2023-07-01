@@ -162,7 +162,7 @@ const Register = () => {
           </span>
         </h1>
       </form>
-      <ToastContainer />
+      <ToastContainer position="bottom-right"/>
     </div>
   );
 };
