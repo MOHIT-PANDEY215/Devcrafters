@@ -1,6 +1,6 @@
 import React from 'react'
 import CourseCard from '../components/card/CourseCard'
-import { CourseData } from '@/lib/data/couseData'
+import { CourseData } from '@/lib/data/courseData'
 import style from'@/pages/components/card/CourseCard.module.css'
 
 const course = () => {
